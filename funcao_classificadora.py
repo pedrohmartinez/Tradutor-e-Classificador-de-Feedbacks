@@ -1,6 +1,8 @@
 # importaçôes
 from openai import OpenAI
 import time 
+import json
+from json_repair import repair_json
 
 # criação do client_openai
 client_openai = OpenAI(
@@ -63,7 +65,10 @@ def extrair_json(lista_de_feedbacks):
             stream=False,
         )
 
-        resposta_texto = resposta_llm.choices[0].message.content.replace("```json", "").replace( "```","")
+        conteudo = resposta_llm.choices[0].message.content.replace("```json", "").replace( "```","").strip()
+        conteudo_tratado = repair_json(conteudo)
+
+        resposta_texto = json.loads(conteudo_tratado)
 
         print(f"Linha {i}: {resposta_texto}")
         lista_feedbacks_json.append(resposta_texto)

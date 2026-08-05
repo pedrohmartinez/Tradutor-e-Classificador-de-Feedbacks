@@ -10,6 +10,7 @@
 # importações:
 from funcao_classificadora import extrair_json
 import pandas as pd
+import json
 
 nomes_colunas = ["ID", "Nome", "Resenhas"]
 
