@@ -9,8 +9,8 @@
 
 # importações:
 from funcao_classificadora import extrair_json
+from funcao_contador_juntador import contador_juntador
 import pandas as pd
-import json
 
 nomes_colunas = ["ID", "Nome", "Resenhas"]
 
@@ -22,5 +22,9 @@ lista_linhas = df_feedbacks_csv[["Nome", "Resenhas"]].values.tolist()
 
 feedbacks_classificados_json = extrair_json(lista_linhas)
 
-print(feedbacks_classificados_json)
+pos, neg, neu, textos = contador_juntador(feedbacks_classificados_json)
 
+print(f"Positivas: {pos}")
+print(f"Negativas: {neg}")
+print(f"Neutras: {neu}")
+print(textos)
