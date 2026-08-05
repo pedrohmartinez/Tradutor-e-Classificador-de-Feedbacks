@@ -7,7 +7,8 @@
 # b) une cada item dessa lista em uma variável do tipo string com algum separador.
 # Ao final, retorna ambas as coisas.
 
-# importação da biblioteca pandas
+# importações:
+from funcao_classificadora import extrair_json
 import pandas as pd
 
 nomes_colunas = ["ID", "Nome", "Resenhas"]
@@ -16,6 +17,9 @@ nomes_colunas = ["ID", "Nome", "Resenhas"]
 df_feedbacks_csv = pd.read_csv("Resenhas_App_ChatGPT.txt", sep="$", header= None, names=nomes_colunas)
 
 # separação do df
-lista_linhas = df_feedbacks_csv[["ID", "Nome", "Resenhas"]].values.tolist()
+lista_linhas = df_feedbacks_csv[["Nome", "Resenhas"]].values.tolist()
 
-print(lista_linhas)
+feedbacks_classificados_json = extrair_json(lista_linhas)
+
+print(feedbacks_classificados_json)
+
